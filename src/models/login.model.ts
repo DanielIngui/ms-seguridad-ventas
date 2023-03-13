@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Usuario} from './usuario.model';
 
 @model()
@@ -17,10 +17,10 @@ export class Login extends Entity {
   codigo2fa: string;
 
   @property({
-    type: 'string',
+    type: 'boolean',
     required: true,
   })
-  estadoCodigo2fa: string;
+  estadoCodigo2fa: boolean;
 
   @property({
     type: 'string',
