@@ -1,5 +1,6 @@
 import { /* inject, */ BindingScope, injectable} from '@loopback/core';
 import {repository} from '@loopback/repository';
+import {ConfiguracionSeguridad} from '../config/seguridad.config';
 import {Credenciales, FactorDeAutenticacionPorCodigo, Usuario} from '../models';
 import {LoginRepository, UsuarioRepository} from '../repositories';
 const generator = require('generate-password');
@@ -88,4 +89,14 @@ export class SeguridadUsuarioService {
     let token = jwt.sign(datos, 'ConfiguracionSeguridad.claveJWT');
     return token;
   }
-}
+
+  /**
+   * Valida y obtiene el rol de un token
+   * @param tk el token
+   * @returns el _id del rol
+   */
+  obtenerRolDesdeToken(tk: string): string {
+    let obj = jwt.verify(tk, ConfiguracionSeguridad.claveJWT);
+    return obj.role;
+  }
+};
