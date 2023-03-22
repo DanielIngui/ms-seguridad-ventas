@@ -86,7 +86,7 @@ export class SeguridadUsuarioService {
       role: usuario.rolId,
       email: usuario.correo
     };
-    let token = jwt.sign(datos, 'ConfiguracionSeguridad.claveJWT');
+    let token = jwt.sign(datos, ConfiguracionSeguridad.claveJWT);
     return token;
   }
 
